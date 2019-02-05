@@ -1,0 +1,6 @@
+# ignore macos files
+.DS_Store
+
+# ignore sync script
+*.sh
+
