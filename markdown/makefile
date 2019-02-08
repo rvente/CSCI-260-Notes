@@ -1,8 +1,6 @@
 .PHONY: help all
 .DEFAULT_GOAL := help
 
-LOCATION=https://gist.githubusercontent.com/rvente/89c0bb1c8e1f454411c331500d6c0587
-
 # makefile modified 2018 12 16 🄯copyleft Ralph Vente
 # support multi file input, Darwin and Linux Platforms
 # usage: by default, inputs all md files in current directory
@@ -45,7 +43,7 @@ each:
 	set -e; for FILE in $(DOCFILE);\
           do for NAME in $(basename $(DOCFILE));\
             do pandoc $(HEADERFILE) -s $$FILE -o\
-							$$NAME.pdf ;\
+							../pdf/$$NAME.pdf ;\
             done \
           done
 
@@ -86,10 +84,6 @@ notes:
 		--template=$(MLA_TEMPLATE)
 	@echo "Export complete. $(basename $<).pdf present in current dir."
 	@echo "$(STYLING) mla."
-
-# sync copy of this makefile from github
-update:
-	curl -o makefile -O $(LOCATION)/raw
 
 # allonym for notes
 note: notes
