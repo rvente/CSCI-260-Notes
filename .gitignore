@@ -2,5 +2,5 @@
 .DS_Store
 
 # ignore sync script
-*.sh
+sync.sh
 
