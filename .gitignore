@@ -4,3 +4,6 @@
 # ignore sync script
 sync.sh
 
+# ignore image cache
+ltximg
+
