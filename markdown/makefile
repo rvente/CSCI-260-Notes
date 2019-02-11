@@ -3,35 +3,20 @@
 
 # makefile modified 2018 12 16 🄯copyleft Ralph Vente
 # support multi file input, Darwin and Linux Platforms
-# usage: by default, inputs all md files in current directory
-# if a `md=some_File` is supplied, only that file will be generated
 
 ifndef md
 DOCFILE=$(wildcard *.md)
-DOCNAME=CSCI-260-Notes
+DOCNAME=CSCI-260-Notes-Full
 else
 DOCFILE=$(md)
 DOCNAME=$(basename $(DOCFILE))
 endif
 
 HEADERFILE=$(wildcard *.yaml)
-NOTESFILE=$(wildcard *note*.md)
-UNAME_S=$(shell uname -s)
-MLA=mlaTemplateDocument.tex
 
 STYLING = "PDF styling is"
 
 DATE=$(shell date +"%Y-%m-%d")
-
-# for mac/linux compatability
-# assumes template doc is present in pandoc templates directory on mac
-# assumes template doc is present in ~/Templates/MLA directory on linux
-
-ifeq ($(UNAME_S),Darwin)
-				MLA_TEMPLATE=$(MLA)
-		else
-				MLA_TEMPLATE=$(HOME)/Templates/MLA/$(MLA)
-		endif
 
 # create new md file with yyyy-mm-dd or append date to existing file as heading1
 new:
@@ -47,43 +32,19 @@ each:
             done \
           done
 
-# output pdf of all converted *.md unless `make md=file.md` is specified
-default:
+# output single pdf of all converted *.md into ../pdf/
+all:
 	pandoc $(HEADERFILE) -s $(DOCFILE)\
-		-o $(DOCNAME).pdf
-	@echo "Export complete. $(DOCNAME).pdf present in current dir."
-	@echo "$(STYLING) default."
-
-# default with mla format
-mla:
-	pandoc $(HEADERFILE) -s $(DOCFILE)\
-		-o $(DOCNAME).pdf\
-		--template=$(MLA_TEMPLATE)
-	@echo "Export complete. $(DOCNAME).pdf present in current dir."
-	@echo "$(STYLING) mla."
-
-# exports files matching *note*.md only
-notes:
-	pandoc $(HEADERFILE) -s $(NOTESFILE)\
-		-o $(basename $(NOTESFILE)).pdf
-	@echo "Export complete. $(basename $(NOTESFILE)).pdf present in current dir."
+		-o ../pdf/$(DOCNAME).pdf
+	@echo "Export complete. $(DOCNAME).pdf present in pdf directory."
 	@echo "$(STYLING) default."
 
 # `make 2018-09-28.pdf` should produce 2018-09-28.pdf with default style
 %.pdf: %.md
 	pandoc $(HEADERFILE) -s $<\
-		-o $(basename $<).pdf
-	@echo "Export complete. $(basename $<).pdf present in current dir."
+		-o ../pdf/$(basename $<).pdf
+	@echo "Export complete. $(basename $<).pdf present in pdf directory."
 	@echo "$(STYLING) default."
-
-# `make 2018-09-28.mla` should produce 2018-09-28.pdf with mla style
-%.mla: %.md
-	DOCNAME=$(basename $<)
-	pandoc $(HEADERFILE) -s $<\
-		-o $(basename $<).pdf
-		--template=$(MLA_TEMPLATE)
-	@echo "Export complete. $(basename $<).pdf present in current dir."
-	@echo "$(STYLING) mla."
 
 # allonym for notes
 note: notes
