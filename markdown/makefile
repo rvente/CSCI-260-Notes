@@ -22,32 +22,19 @@ DATE=$(shell date +"%Y-%m-%d")
 new:
 	echo "# $(shell echo $(DATE) | sed "s/-/ /g")" >> $(DATE).md
 
-
-# export each file into its own individual pdf
-each:
-	set -e; for FILE in $(DOCFILE);\
-          do for NAME in $(basename $(DOCFILE));\
-            do pandoc $(HEADERFILE) -s $$FILE -o\
-							../pdf/$$NAME.pdf ;\
-            done \
-          done
-
 # output single pdf of all converted *.md into ../pdf/
 all:
 	pandoc $(HEADERFILE) -s $(DOCFILE)\
-		-o ../pdf/$(DOCNAME).pdf
+            -o ../pdf/$(DOCNAME).pdf
 	@echo "Export complete. $(DOCNAME).pdf present in pdf directory."
 	@echo "$(STYLING) default."
 
 # `make 2018-09-28.pdf` should produce 2018-09-28.pdf with default style
 %.pdf: %.md
 	pandoc $(HEADERFILE) -s $<\
-		-o ../pdf/$(basename $<).pdf
+            -o ../pdf/$(basename $<).pdf
 	@echo "Export complete. $(basename $<).pdf present in pdf directory."
 	@echo "$(STYLING) default."
-
-# allonym for notes
-note: notes
 
 # Show this help.
 help:
