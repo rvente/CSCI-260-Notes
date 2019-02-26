@@ -5,7 +5,7 @@
 # support multi file input, Darwin and Linux Platforms
 
 ifndef md
-DOCFILE=*.md
+DOCFILE=$(wildcard *.md)
 DOCNAME=CSCI-260-Notes-Full
 else
 DOCFILE=$(md)
@@ -24,7 +24,7 @@ new:
 
 # output single pdf of all converted *.md into ../pdf/
 all:
-	pandoc $(HEADERFILE) -s $(DOCFILE)\
+	pandoc $(HEADERFILE) -s *.md\
             -o ../pdf/$(DOCNAME).pdf
 	@echo "Export complete. $(DOCNAME).pdf present in pdf directory."
 	@echo "$(STYLING) default."
@@ -35,6 +35,15 @@ all:
             -o ../pdf/$(basename $<).pdf
 	@echo "Export complete. $(basename $<).pdf present in pdf directory."
 	@echo "$(STYLING) default."
+
+# export each file into its own individual pdf
+each:
+	@for FILE in $(basename $(DOCFILE)); do \
+            pandoc $(HEADERFILE) -s $$FILE.md -o ../pdf/$$FILE.pdf ;\
+        done
+	@echo "Export complete. PDF's with various filenames present in ../pdf directory."
+	@echo "$(STYLING) default."
+
 
 # Show this help.
 help:

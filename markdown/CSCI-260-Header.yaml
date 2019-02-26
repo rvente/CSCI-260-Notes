@@ -1,0 +1,27 @@
+---
+title: "CSCI 260 Notes"
+author:
+  - "Ralph Vente"
+  - "Nick Szewczak"
+  - "Anton Goretsky"
+toc: true
+header-includes: |
+   \usepackage{qrcode}
+   \usepackage{tikz}
+   \usepackage{pgfplots}
+   \usepackage{ccicons}
+   \usepackage{fancyhdr}
+   \pagestyle{fancy}
+   \renewcommand{\headrulewidth}{0pt}
+   \lhead{}
+   \rhead{}
+   \cfoot{\thepage}
+   \lfoot{}
+   \rfoot{}
+date: |
+   \begin{center}
+   {\footnotesize https://github.com/rvente/CSCI-260-Notes} \\ \vspace{.25in}
+   \qrcode[height=.6in]{https://github.com/rvente/CSCI-260-Notes} \\ \vspace{.12in}
+   \ccbysa 
+   \end{center}
+---
