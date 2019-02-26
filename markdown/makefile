@@ -5,7 +5,7 @@
 # support multi file input, Darwin and Linux Platforms
 
 ifndef md
-DOCFILE=$(wildcard *.md)
+DOCFILE=*.md
 DOCNAME=CSCI-260-Notes-Full
 else
 DOCFILE=$(md)

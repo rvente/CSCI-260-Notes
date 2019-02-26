@@ -2,11 +2,8 @@
 title: "CSCI 260 Notes"
 author:
   - "Ralph Vente"
-<<<<<<< HEAD
   - "Nick Szewczak"
   - "Anton Goretsky"
-=======
->>>>>>> aeb73db2b7d5e3ce8b0705e0b7c30c941019495c
 toc: true
 header-includes: |
    \usepackage{tikz}
