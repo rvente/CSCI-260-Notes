@@ -1,0 +1,9 @@
+# ignore macos files
+.DS_Store
+
+# ignore sync script
+sync.sh
+
+# ignore image cache
+ltximg
+

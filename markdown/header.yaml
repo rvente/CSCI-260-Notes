@@ -1,0 +1,9 @@
+---
+title: "CSCI 260 Notes"
+author:
+  - "Ralph Vente"
+toc: true
+header-includes: |
+   \usepackage{tikz}
+   \usepackage{pgfplots}
+---
